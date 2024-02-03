@@ -41,6 +41,7 @@ return new class extends Migration {
             $table->timestamp('published_at');
             $table->timestamps();
         });
+
     }
 
     /**
