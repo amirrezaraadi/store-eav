@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique()->nullable();
             $table->text('intro_production')->nullable();
+            $table->text('image')->nullable()->comment('ایم عکس عکس شاخص این پروداکت هست ');
             $table->decimal('weight', 10, 2);
             $table->decimal('length', 10, 2);
             $table->decimal('width', 10, 2);
