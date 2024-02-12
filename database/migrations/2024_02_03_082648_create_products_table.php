@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->decimal('height', 10, 2);
             $table->decimal('price', 10, 2);
             $table->enum('status', \App\Models\Product::$statuses)
-                ->deferrable(\App\Models\Product::STATUS_PENDING);
+                ->default(\App\Models\Product::STATUS_PENDING);
             $table->enum('marketable', \App\Models\Product::$market)
                 ->default(\App\Models\Product::MARKET_PENDING);
             $table->tinyInteger('sold_number')->default(0)

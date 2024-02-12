@@ -30,5 +30,10 @@ Route::prefix('panel')->name('panel')->group(function () {
 });
 
 Route::prefix('status')->name('status')->group(function () {
-    Route::apiResource('brands' , \App\Http\Controllers\BrandController::class);
+    Route::put('brands-success' , [\App\Http\Controllers\BrandController::class , 'success'])->name('brands-success');
+    Route::put('brands-reject' , [\App\Http\Controllers\BrandController::class , 'reject'])->name('brands-reject');
+    Route::put('brands-pending' , [\App\Http\Controllers\BrandController::class , 'pending'])->name('brands-pending');
+    Route::put('brands-close' , [\App\Http\Controllers\BrandController::class , 'close'])->name('brands-close');
+    Route::put('brands-finish' , [\App\Http\Controllers\BrandController::class , 'finish'])->name('brands-finish');
+
 });
