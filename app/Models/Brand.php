@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Brand extends Model
 {
-    use HasFactory;
+    use HasFactory , Sluggable , SoftDeletes;
     protected $fillable = [
         'title',
         'title_en',
@@ -21,7 +23,6 @@ class Brand extends Model
         'content_finished',
         'special',
         'status',
-//        'category_id',
         'user_id',
         'time_start',
         'time_finished',
@@ -32,14 +33,14 @@ class Brand extends Model
         'time_finished' => 'datetime',
     ];
 
-//    public function sluggable(): array
-//    {
-//        return [
-//            'slug' => [
-//                'source' => ['title', 'title_en']
-//            ]
-//        ];
-//    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => ['title', 'title_en']
+            ]
+        ];
+    }
 
     const STATUS_SUCCESS = 'success';
     const STATUS_PENDING = 'pending';
@@ -58,5 +59,10 @@ class Brand extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class , 'taggable');
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryAttributesController;
+use App\Http\Controllers\CategoryAttributesDefaultController;
+use App\Http\Controllers\CategoryProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +22,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('panel')->name('panel')->group(function () {
-    Route::apiResource('category-product' , \App\Http\Controllers\CategoryProductController::class);
-    Route::apiResource('category-attribute' , \App\Http\Controllers\CategoryAttributesController::class);
+    Route::apiResource('category-product' , CategoryProductController::class);
+    Route::apiResource('category-attribute' , CategoryAttributesController::class);
+    Route::apiResource('category-attribute-default' , CategoryAttributesDefaultController::class);
+    Route::apiResource('brands' , \App\Http\Controllers\BrandController::class);
 
 });

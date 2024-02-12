@@ -5,62 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use App\Repository\brands\brandRepo;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(public brandRepo $brandRepo)
+    {
+    }
+
     public function index()
     {
-        //
+        return $brands = $this->brandRepo->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreBrandRequest $request)
     {
-        //
+        $this->brandRepo->create($request);
+        return response()->json(['message' => 'success brande store', 'status' => 'success'], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Brand $brand)
+    public function show( $brand)
     {
-        //
+        return $brand = $this->brandRepo->getFindId($brand);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Brand $brand)
+    public function update(UpdateBrandRequest $request,  $brand)
     {
-        //
+        $this->brandRepo->update($request , $brand);
+        return response()->json(['message' => 'success brande updated', 'status' => 'success'], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function destroy( $brand)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Brand $brand)
-    {
-        //
+        $this->brandRepo->delete($brand);
+        return response()->json(['message' => 'success brande deleted', 'status' => 'success'], 200);
     }
 }

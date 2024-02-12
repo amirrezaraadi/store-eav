@@ -27,10 +27,6 @@ return new class extends Migration
             $table->boolean('special')->default(0);
             $table->enum('status', Brand::$statuses)
                 ->default(Brand::STATUS_PENDING);
-//            $table->foreignId('category_id')
-//                ->constrained('categories')
-//                ->cascadeOnUpdate()
-//                ->cascadeOnDelete();
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnUpdate()

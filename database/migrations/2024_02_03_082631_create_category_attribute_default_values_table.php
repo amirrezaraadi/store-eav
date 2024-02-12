@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('value');
             $table->foreignId('category_attribute_id')
                 ->constrained('category_attributes')
-                ->cascadeOnUpdate()->cascadeOnDelete();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
