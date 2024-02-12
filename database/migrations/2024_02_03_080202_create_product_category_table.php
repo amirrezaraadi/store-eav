@@ -18,14 +18,15 @@ return new class extends Migration {
             $table->text('image')
                 ->nullable();
             $table->longText('content')->nullable();
-            $table->enum('status', ['success', 'pending', 'reject'])
-                ->default('pending');
+            $table->enum('status' , \App\Models\Panel\CategoryProduct::$statuses)
+                ->default(\App\Models\Panel\CategoryProduct::STATUS_PENDING);
             $table->tinyInteger('show_in_menu')
                 ->default(0);
             $table->foreignId('parent_id')
                 ->nullable()
                 ->constrained('product_category')
-                ->cascadeOnUpdate()->cascadeOnUpdate();
+                ->cascadeOnUpdate()
+                ->cascadeOnUpdate();
             $table->softDeletes();
             $table->timestamps();
         });
