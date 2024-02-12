@@ -20,4 +20,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('category-product' , \App\Http\Controllers\CategoryProductController::class);
+    Route::apiResource('category-attribute' , \App\Http\Controllers\CategoryAttributesController::class);
+
 });

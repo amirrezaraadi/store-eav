@@ -14,13 +14,13 @@ return new class extends Migration {
 //            todo -> هر دسته بندی من یک یکسری خاصیت داره مثلا موبایل من رنگ داره سابز داره قیمت داره مشخصات داره
             $table->id();
             $table->string('name');
-            $table->tinyInteger('type')
-                ->default(0);
-            //            $table->enum('type' ,  ['text', 'select', 'checkbox', 'radio', 'textarea']) ;
+            $table->string('slug')->unique();
+            $table->enum('type' , \App\Models\Panel\CategoryAttributes::$types);
             $table->string('unit');
             $table->foreignId('category_id')
                 ->constrained('product_category')
-                ->cascadeOnUpdate()->cascadeOnDelete();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
