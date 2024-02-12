@@ -28,3 +28,7 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('brands' , \App\Http\Controllers\BrandController::class);
 
 });
+
+Route::prefix('status')->name('status')->group(function () {
+    Route::apiResource('brands' , \App\Http\Controllers\BrandController::class);
+});
