@@ -5,60 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Repository\products\productRepo;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(public productRepo $productRepo)
+    {
+    }
+
     public function index()
     {
-        //
+        return $products = $this->productRepo->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreProductRequest $request)
     {
-        //
+        $image = $request->image ;
+        $this->productRepo->create($request->only([
+            'name',
+            'intro_production',
+            'marketable',
+            'brand_id',
+            'category_id',
+            'published_at'
+        ]) , $image);
+        return response()->json(['message' => 'success store products', 'status' => 'success'], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Product $product)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateProductRequest $request, Product $product)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Product $product)
     {
         //

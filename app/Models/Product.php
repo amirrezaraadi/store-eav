@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory , Sluggable , SoftDeletes;
+    protected $guarded =[];
     const STATUS_SUCCESS = 'success';
     const STATUS_PENDING = 'pending';
     const STATUS_REJECT = 'reject';
@@ -25,5 +28,15 @@ class Product extends Model
         self::MARKET_PENDING,
         self::MARKET_REJECT,
     ];
-
+    protected $casts = [
+        'published_at' => 'timestamp'
+    ];
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 }

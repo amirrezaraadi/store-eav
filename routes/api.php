@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryAttributesController;
 use App\Http\Controllers\CategoryAttributesDefaultController;
+use App\Http\Controllers\CategoryAttributeValueController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +28,9 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('category-product' , CategoryProductController::class);
     Route::apiResource('category-attribute' , CategoryAttributesController::class);
     Route::apiResource('category-attribute-default' , CategoryAttributesDefaultController::class);
-    Route::apiResource('brands' , \App\Http\Controllers\BrandController::class);
-
+    Route::apiResource('category-attribute-values' , CategoryAttributeValueController::class);
+    Route::apiResource('brands' , BrandController::class);
+    Route::apiResource('products' , ProductController::class);
 });
 
 Route::prefix('status')->name('status')->group(function () {

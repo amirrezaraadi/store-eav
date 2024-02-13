@@ -18,6 +18,7 @@ class CategoryAttributes extends Model
         'category_id',
     ];
 
+    protected $table = 'category_attribute_values';
     const TYPE_TEXT = 'text';
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_RADIO = 'radio';

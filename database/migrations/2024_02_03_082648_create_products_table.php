@@ -12,15 +12,12 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->string('title_en');
+            $table->string('title_en');
             $table->string('slug')->unique()->nullable();
             $table->text('intro_production')->nullable();
             $table->text('image')->nullable()->comment('ایم عکس عکس شاخص این پروداکت هست ');
-            $table->decimal('weight', 10, 2);
-            $table->decimal('length', 10, 2);
-            $table->decimal('width', 10, 2);
-            $table->decimal('height', 10, 2);
-            $table->decimal('price', 10, 2);
             $table->enum('status', \App\Models\Product::$statuses)
                 ->default(\App\Models\Product::STATUS_PENDING);
             $table->enum('marketable', \App\Models\Product::$market)
@@ -38,7 +35,8 @@ return new class extends Migration {
             $table->foreignId('category_id')
                 ->constrained('product_category')
                 ->cascadeOnUpdate()->cascadeOnDelete();
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
