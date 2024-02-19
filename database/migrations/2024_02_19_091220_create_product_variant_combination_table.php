@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('product_variant_combination', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_variant_id')
+                ->nullable()
+                ->constrained('product_variant')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('variant_id')
+                ->nullable()
+                ->constrained('variants')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

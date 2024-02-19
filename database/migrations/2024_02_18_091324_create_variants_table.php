@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('title_en');
+            $table->string('slug')->nullable()->unique();
+            $table->string('slug_en')->nullable()->unique();
+            $table->string('value');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
