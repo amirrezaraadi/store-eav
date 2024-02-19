@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('title_en');
-            $table->string('title_en');
+            $table->string('slug_en');
             $table->string('slug')->unique()->nullable();
             $table->text('intro_production')->nullable();
             $table->text('image')->nullable()->comment('ایم عکس عکس شاخص این پروداکت هست ');

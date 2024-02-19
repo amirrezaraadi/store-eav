@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('product_id')->constrained('products')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId('category_attribute_id')->constrained('category_attributes')
+            $table->foreignId('attribute_id')->constrained('attributes')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->tinyInteger('type')

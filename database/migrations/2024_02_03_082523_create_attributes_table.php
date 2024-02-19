@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('category_attributes', function (Blueprint $table) {
+        Schema::create('attributes', function (Blueprint $table) {
 //            todo -> هر دسته بندی من یک یکسری خاصیت داره مثلا موبایل من رنگ داره سابز داره قیمت داره مشخصات داره
             $table->id();
             $table->string('name');
@@ -31,6 +31,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_attributes');
+        Schema::dropIfExists('attributes');
     }
 };

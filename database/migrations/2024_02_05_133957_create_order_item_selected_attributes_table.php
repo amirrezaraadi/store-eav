@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('order_item_selected_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_item_id')->constrained('order_items')->cascadeOnUpdate()->cascadeOnDelete(); // iphone 12
-            $table->foreignId('category_attribute_id') // color
-                ->constrained('category_attributes')
+            $table->foreignId('order_item_id')
+                ->constrained('order_items')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete(); // iphone 12
+            $table->foreignId('attribute_id') // color
+                ->constrained('attributes')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('category_value_id') // red

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_attribute_default_values', function (Blueprint $table) {
+        Schema::create('attribute_default_values', function (Blueprint $table) {
             // todo -> مثلا ما یک برند یا یک گارانتی کار میکنینم بد چون قراراداد بستیم تبلیغات کنیم باید بیایم از این خاصیت استافده کنیم
             // todo -> و دیفالت یکسری محصول یا گارنتی یا خاصیت نمایش بدیم
             $table->id();
             $table->string('value');
-            $table->foreignId('category_attribute_id')
-                ->constrained('category_attributes')
+            $table->foreignId('attribute_id')
+                ->constrained('attributes')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->softDeletes();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_attribute_default_values');
+        Schema::dropIfExists('attribute_default_values');
     }
 };

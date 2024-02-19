@@ -15,8 +15,8 @@ return new class extends Migration
             // todo -> این جدول به ما کمک میکنه که ما متوحه بشیم یک کاربر با چه
             //  ک یک کاربر با یک دسته بندی اتربیوت چه مقداری انتخاب کرده
             $table->id();
-            $table->foreignId('category_attribute_id')
-                ->constrained('category_attributes')
+            $table->foreignId('attribute_id')
+                ->constrained('attributes')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('cart_item_id')

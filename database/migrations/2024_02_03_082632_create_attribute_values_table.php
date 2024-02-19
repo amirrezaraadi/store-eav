@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_attribute_values', function (Blueprint $table) {
+        Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
             $table->text('title')->nullable();
             $table->enum('status' , \App\Models\Panel\CategoryAttributeValue::$statuses)
                 ->default(\App\Models\Panel\CategoryAttributeValue::STATUS_PENDING);
-            $table->foreignId('category_attribute_id')
+            $table->foreignId('attribute_id')
                 ->nullable()
-                ->constrained('category_attributes');
+                ->constrained('attributes');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_attribute_values');
+        Schema::dropIfExists('attribute_values');
     }
 };
