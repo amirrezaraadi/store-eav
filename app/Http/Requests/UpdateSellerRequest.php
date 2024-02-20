@@ -23,12 +23,12 @@ class UpdateSellerRequest extends FormRequest
     {
         if ($this->isMethod('put')) {
             return [
-                'first_name',
-                'last_name',
-                'point',
-                'email',
-                'phone',
-                'cart_number',
+                'first_name' => 'required|string',
+                'last_name' => 'required|string',
+                'point' => 'required|string',
+                'email' => 'required|email',
+                'phone' => 'required|string',
+                'cart_number' => 'required|string',
             ];
         }
 //        if ($this->isMethod('post')) {
