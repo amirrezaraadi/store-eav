@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryAttributeValueController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\VariantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('brands' , BrandController::class);
     Route::apiResource('sellers' , SellerController::class);
     Route::apiResource('products' , ProductController::class);
+    Route::apiResource('variants' , VariantController::class);
+
 });
 
 Route::prefix('status')->name('status')->group(function () {
@@ -46,4 +49,8 @@ Route::prefix('status')->name('status')->group(function () {
     Route::put('seller-success/{seller}' , [\App\Http\Controllers\SellerController::class , 'success'])->name('seller-success');
     Route::put('seller-reject/{seller}' , [\App\Http\Controllers\SellerController::class , 'reject'])->name('seller-reject');
     Route::put('seller-pending/{seller}' , [\App\Http\Controllers\SellerController::class , 'pending'])->name('seller-pending');
+
+    Route::put('variant-success/{variant}' , [\App\Http\Controllers\VariantController::class , 'success'])->name('variant-success');
+    Route::put('variant-reject/{variant}' , [\App\Http\Controllers\VariantController::class , 'reject'])->name('variant-reject');
+    Route::put('variant-pending/{variant}' , [\App\Http\Controllers\VariantController::class , 'pending'])->name('variant-pending');
 });
