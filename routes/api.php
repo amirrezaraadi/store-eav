@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryAttributesController;
 use App\Http\Controllers\CategoryAttributesDefaultController;
 use App\Http\Controllers\CategoryAttributeValueController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\VariantController;
@@ -35,6 +36,7 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('sellers' , SellerController::class);
     Route::apiResource('products' , ProductController::class);
     Route::apiResource('variants' , VariantController::class);
+    Route::apiResource('countries' , CountryController::class);
 
 });
 
