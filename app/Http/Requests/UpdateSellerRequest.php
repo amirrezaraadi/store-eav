@@ -11,7 +11,7 @@ class UpdateSellerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,25 @@ class UpdateSellerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        if ($this->isMethod('put')) {
+            return [
+                'first_name',
+                'last_name',
+                'point',
+                'email',
+                'phone',
+                'cart_number',
+            ];
+        }
+//        if ($this->isMethod('post')) {
+            return [
+                'first_name',
+                'last_name',
+                'point',
+                'email',
+                'phone',
+                'cart_number',
+            ];
+//        }
     }
 }

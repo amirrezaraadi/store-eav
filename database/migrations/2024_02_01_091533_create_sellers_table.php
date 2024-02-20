@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('code_phone');
-            $table->ipAddress('ip');
+            $table->string('code_phone')->nullable();
+            $table->ipAddress('ip')->nullable();
             $table->string('point')->nullable();
-            $table->string('email')->nullable();
-            $table->unsignedInteger('phone')->nullable();
+            $table->string('email')->nullable()->unique();
+            $table->unsignedInteger('phone')->nullable()->unique();
             $table->string('cart_number')->nullable();
             $table->enum('status' , \App\Models\Seller\Seller::$statuses)
                 ->default(\App\Models\Seller\Seller::STATUS_PENDING);

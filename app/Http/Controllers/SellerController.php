@@ -5,62 +5,72 @@ namespace App\Http\Controllers;
 use App\Models\Seller\Seller;
 use App\Http\Requests\StoreSellerRequest;
 use App\Http\Requests\UpdateSellerRequest;
+use App\Repository\Seller\Info\infoSellerRepo;
 
 class SellerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(public infoSellerRepo $infoSellerRepo)
+    {
+    }
     public function index()
     {
-        //
+        return $seller = $this->infoSellerRepo->index();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreSellerRequest $request)
     {
-        //
+        $this->infoSellerRepo->create($request->only([
+            'first_name',
+            'last_name',
+            'point',
+            'email',
+            'phone',
+            'cart_number',
+        ]));
+        return response()->json(['message' => 'success store seller ', 'status' => 'success'], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Seller $seller)
+
+    public function show($seller)
     {
-        //
+        return $this->infoSellerRepo->getFindId($seller);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Seller $seller)
+
+    public function update(UpdateSellerRequest $request, $seller)
     {
-        //
+        $this->infoSellerRepo->update($request->only([
+            'first_name',
+            'last_name',
+            'point',
+            'email',
+            'phone',
+            'cart_number',
+        ]), $seller);
+        return response()->json(['message' => 'success update seller ', 'status' => 'success'], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSellerRequest $request, Seller $seller)
+    public function destroy($seller)
     {
-        //
+        $dated = $this->infoSellerRepo->delete($seller);
+        if($dated === 0) return response()->json(['message' => 'fail deleted seller ', 'status' => 'error'], 404);
+        return response()->json(['message' => 'success deleted seller ', 'status' => 'success'], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Seller $seller)
+    public function success($brand)
     {
-        //
+        $this->infoSellerRepo->status($brand, Seller::STATUS_SUCCESS);
+        return response()->json(['message' => 'success brande status success', 'status' => 'success'], 200);
+    }
+
+    public function reject($brand)
+    {
+        $this->infoSellerRepo->status($brand, Seller::STATUS_REJECT);
+        return response()->json(['message' => 'success brande status reject', 'status' => 'success'], 200);
+    }
+
+    public function pending($brand)
+    {
+        $this->infoSellerRepo->status($brand, Seller::STATUS_PENDING);
+        return response()->json(['message' => 'success brande status pending', 'status' => 'success'], 200);
     }
 }
