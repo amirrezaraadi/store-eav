@@ -15,9 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('amount' , 20 , 3)->nullable();
-            $table->integer('delivery_time')->comment('زمان ');
-            $table->string('delivery_time_unit')->comment('واحد زمان ');
-            $table->tinyInteger('status')->default(0);
+            $table->enum('type' , \App\Models\User\Delivery::$types)
+                ->default(\App\Models\User\Delivery::TYPE_NORMAL);
+            $table->enum('delivery_time' , \App\Models\User\Delivery::$delivery_time)
+                ->comment('زمان ');
+            $table->enum('delivery_time_unit' , \App\Models\User\Delivery::$weeky)->comment('تاریخ ');
+            $table->foreignId('product_id')
+                ->constrained('products')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('location_id')
+                ->constrained('addresses')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
