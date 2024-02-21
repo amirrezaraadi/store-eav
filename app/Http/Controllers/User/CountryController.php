@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\User\Country;
+use App\Http\Controllers\Controller;
 use App\Repository\location\countryRepo;
 use Illuminate\Http\Request;
 
