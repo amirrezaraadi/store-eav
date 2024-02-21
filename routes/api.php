@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryAttributesController;
 use App\Http\Controllers\CategoryAttributesDefaultController;
 use App\Http\Controllers\CategoryAttributeValueController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\User\CityController;
@@ -41,6 +42,7 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('countries', CountryController::class);
     Route::apiResource('provinces', ProvinceController::class);
     Route::apiResource('cities', CityController::class);
+    Route::apiResource('location', LocationController::class);
 
 });
 
@@ -59,4 +61,8 @@ Route::prefix('status')->name('status')->group(function () {
     Route::put('variant-success/{variant}', [\App\Http\Controllers\VariantController::class, 'success'])->name('variant-success');
     Route::put('variant-reject/{variant}', [\App\Http\Controllers\VariantController::class, 'reject'])->name('variant-reject');
     Route::put('variant-pending/{variant}', [\App\Http\Controllers\VariantController::class, 'pending'])->name('variant-pending');
+
+    Route::put('location-success/{location}', [LocationController::class, 'success'])->name('location-success');
+    Route::put('location-reject/{location}', [LocationController::class, 'reject'])->name('location-reject');
+    Route::put('location-pending/{location}', [LocationController::class, 'pending'])->name('location-pending');
 });
