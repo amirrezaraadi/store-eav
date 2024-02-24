@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('amazing_sales', function (Blueprint $table) {
+            // todo فروش شگفت انگیز
             $table->id();
             $table->foreignId('product_id')
                 ->constrained('products')

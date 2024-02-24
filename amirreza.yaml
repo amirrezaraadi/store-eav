@@ -1,0 +1,96 @@
+openapi: "3.0.2"
+info:
+  title: API auth
+  version: "1.0"
+servers:
+  - url: https://127.0.0.1:8000/
+paths:
+  /login:
+    post:
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+        - in: query
+          name: "id"
+          schema:
+            type: string
+      description: "login"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/User"
+          multipart/formdata:
+            schema:
+              type: object
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/UserProfile"
+
+  /user/{id}:
+    get:
+      parameters:
+        - in: path
+          content:
+          name: "id"
+
+      responses:
+        200:
+          description: "ok"
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+          links:
+
+
+
+
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          type: integer
+          example: 14
+          description: "user id"
+        email:
+          type: string
+          format: "email"
+          example: "abc@ytr.cdr"
+        password:
+          type: string
+          format: "password"
+          example: "123pAssword^"
+
+    UserProfile:
+      properties:
+
+        id:
+          type: integer
+          example: 14
+          description: "user id"
+        email:
+          type: string
+          format: "email"
+          example: "abc@ytr.cdr"
+        password:
+          type: string
+          format: "password"
+          example: "123pAssword^"
+          writeOnly: true
+        last login:
+          type: string
+          format: date
+          example: "22-04-1994"
+

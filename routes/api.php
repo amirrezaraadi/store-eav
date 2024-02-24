@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryAttributesController;
 use App\Http\Controllers\CategoryAttributesDefaultController;
 use App\Http\Controllers\CategoryAttributeValueController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
@@ -43,6 +44,7 @@ Route::prefix('panel')->name('panel')->group(function () {
     Route::apiResource('provinces', ProvinceController::class);
     Route::apiResource('cities', CityController::class);
     Route::apiResource('location', LocationController::class);
+    Route::apiResource('delivery', DeliveryController::class);
 
 });
 

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Repository\products\productRepo;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,10 @@ class ProductController extends Controller
 
     public function index()
     {
-        return $products = $this->productRepo->index();
+        return Cache::remember('users' , now()->addMinutes(1), function () {
+            return $this->productRepo->index();
+        });
+
     }
 
     public function store(StoreProductRequest $request)

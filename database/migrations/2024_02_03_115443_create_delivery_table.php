@@ -20,6 +20,8 @@ return new class extends Migration
             $table->enum('delivery_time' , \App\Models\User\Delivery::$delivery_time)
                 ->comment('زمان ');
             $table->enum('delivery_time_unit' , \App\Models\User\Delivery::$weeky)->comment('تاریخ ');
+            $table->enum('status' , \App\Models\User\Delivery::$statuses)
+                ->default(\App\Models\User\Delivery::STATUS_PENDING);
             $table->foreignId('product_id')
                 ->constrained('products')
                 ->cascadeOnUpdate()
@@ -28,6 +30,8 @@ return new class extends Migration
                 ->constrained('addresses')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->timestamp('success_click')->comment('بذ پرداخت تایید کیشه ');
+            $table->timestamp('success_receive')->comment('دریافت کالا');
             $table->softDeletes();
             $table->timestamps();
         });

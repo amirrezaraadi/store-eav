@@ -4,6 +4,7 @@ namespace App\Repository\products;
 
 use App\Models\Product;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Cache;
 
 class productRepo
 {
@@ -16,7 +17,9 @@ class productRepo
 
     public function index()
     {
-        return $this->query->paginate();
+
+       return $this->query->get();
+
     }
 
     public function create($data , $image )

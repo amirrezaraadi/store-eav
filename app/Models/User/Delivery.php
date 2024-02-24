@@ -10,6 +10,9 @@ class Delivery extends Model
 {
     use HasFactory;
 
+    protected $table = 'delivery';
+
+
     protected $fillable = [
         'name',
         'amount',
@@ -18,6 +21,9 @@ class Delivery extends Model
         'delivery_time_unit',
         'product_id',
         'location_id',
+        'status',
+        'success_click',
+        'success_click',
     ];
 
     const TYPE_NORMAL = 'normal'; // عادی
@@ -41,6 +47,25 @@ class Delivery extends Model
         self::TIME_FIFTEEN_TO_EIGHTEEN,
         self::TIME_EIGHTEEN_TO_TWENTY_ONE
     ];
+
+    const STATUS_PENDING = 'pending';
+    const STATUS_SUCCESS = 'success';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_FAIL = ' fail';
+    const STATUS_CANCEL = 'cancel';
+    const STATUS_REJECT = 'reject';
+    const STATUS_DEADLINE = 'deadline';
+    public static $statuses = [
+        self::STATUS_PENDING,
+        self::STATUS_SUCCESS,
+        self::STATUS_ACTIVE,
+        self::STATUS_FAIL,
+        self::STATUS_CANCEL,
+        self::STATUS_REJECT,
+        self::STATUS_DEADLINE,
+    ];
+
+
     const WEEK_MONDAY = 'monday';
     const WEEK_TUESDAY = 'tuesday';
     const WEEK_WEDNESDAY = 'wednesday';
@@ -60,11 +85,16 @@ class Delivery extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class , 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function location()
     {
-        return $this->belongsTo(Location::class , 'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
     }
+
+    protected $casts = [
+        'success_click' => 'timestamp',
+        'success_receive' => 'timestamp',
+    ];
 }

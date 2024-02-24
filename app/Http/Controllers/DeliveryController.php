@@ -3,47 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\User\Delivery;
+use App\Repository\delivery\deliveryRepo;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(public deliveryRepo $deliveryRepo){}
+
     public function index()
     {
-        //
+        return $delivery = $this->deliveryRepo->index();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        $this->deliveryRepo->create($request);
+        return response()->json(['message' => 'success' , 'status' => 'success'],200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Delivery $delivery)
+
+    public function show( $delivery)
     {
-        //
+        return $delivery = $this->deliveryRepo->getFindId($delivery);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Delivery $delivery)
+
+    public function update(Request $request,  $delivery)
     {
-        //
+        $this->deliveryRepo->update($request , $delivery);
+        return response()->json(['message' => 'success updated delivery' , 'status' => 'success'],200);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Delivery $delivery)
+
+    public function destroy( $delivery)
     {
-        //
+        $deleted = $this->deliveryRepo->deleted($delivery);
+        if($deleted === 0) return response()->json(['message' => 'fail deleted delivery' , 'status' => 'error'],404);
+        return response()->json(['message' => 'success deleted delivery' , 'status' => 'success'],200);
+
     }
 }
