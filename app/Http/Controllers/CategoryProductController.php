@@ -231,8 +231,6 @@ class CategoryProductController extends Controller
         $this->category_product->update($request, $categoryProduct);
         return response()->json(['message' => 'success update', 'status' => 'success'], 200);
     }
-
-
     public function destroy($categoryProduct)
     {
         $this->category_product->delete($categoryProduct);
