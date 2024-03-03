@@ -1,0 +1,30 @@
+/**
+ * @OA\Get(
+ *     path="/api/panel/category-product",
+ *     summary="Get information",
+ *     description="Get information from the API",
+ *     tags={"CategoryProduct"},
+ *     @OA\Parameter(
+ *         name="name",
+ *         in="query",
+ *         example="Ali",
+ *         description="Provider name",
+ *         required=true,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Successful operation",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="name", type="string",example="Ali"),
+ *             @OA\Property(property="message", type="string",example="Hello Ali")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=400,
+ *         description="Bad request"
+ *     )
+ *
+ * )
+ **/

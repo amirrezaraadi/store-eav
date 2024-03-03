@@ -1,0 +1,321 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Clientes",
+        "description": "Mostando la Lista de URI's de mi API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/panel/category-product": {
+            "get": {
+                "tags": [
+                    "category-product"
+                ],
+                "summary": "index category-product",
+                "operationId": "ff78b7c35e22a17a6306b62bd1c36d6a",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "my name amirreza"
+                                                    },
+                                                    "slug": {
+                                                        "type": "string",
+                                                        "example": "my-name-amirreza"
+                                                    },
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "httpp://localhost:8000/public/image/category_product/"
+                                                    },
+                                                    "content": {
+                                                        "type": "string",
+                                                        "example": "Aderson Felix my name amirrezaaaa"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "suyccess"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T00:09:16.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-02-23T12:33:45.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\\api\\panel\\category-product": {
+            "post": {
+                "tags": [
+                    "category_product"
+                ],
+                "summary": "store category products",
+                "operationId": "11e4067769e697f3ea301a89e9332410",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "LG"
+                                            },
+                                            "content": {
+                                                "type": "string",
+                                                "example": "lg gold brand"
+                                            },
+                                            "image": {
+                                                "type": "string",
+                                                "example": "download.png"
+                                            },
+                                            "show_in_menu": {
+                                                "type": "boolean",
+                                                "example": "1"
+                                            },
+                                            "parent_id": {
+                                                "type": "number",
+                                                "example": "1"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "CREATED",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Aderson Felix"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "Jara Lazaro"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Jara Lazaro"
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "Jara Lazaro"
+                                        },
+                                        "show_in_menu": {
+                                            "type": "boolean",
+                                            "example": "Jara Lazaro"
+                                        },
+                                        "parent_id": {
+                                            "type": "number",
+                                            "example": "Jara Lazaro"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "UNPROCESSABLE CONTENT",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "The name field is required."
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "title uinique valid"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "The content field is required."
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "The image field is required."
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The apellidos field is required."
+                                        },
+                                        "errors": {
+                                            "type": "string",
+                                            "example": "Objeto de errores"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/panel/category-product/{id}": {
+            "get": {
+                "tags": [
+                    "CategoryProduct"
+                ],
+                "summary": "Get information",
+                "description": "Get information from the API",
+                "operationId": "a31edbd01d38435a9f1287517e257a45",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Provider name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Ali"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "show Aderson Felix"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "show Jara Lazaro"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "show Jara Lazaro"
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "show Jara Lazaro"
+                                        },
+                                        "show_in_menu": {
+                                            "type": "boolean",
+                                            "example": "show Jara Lazaro"
+                                        },
+                                        "parent_id": {
+                                            "type": "number",
+                                            "example": "show Jara Lazaro"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T00:09:16.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2023-02-23T12:33:45.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "default",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] #id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
