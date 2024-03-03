@@ -17,6 +17,7 @@ class CategoryProductController extends Controller
      *
      * @OA\Server(url="127.0.0.1:8000")
      */
+
     public function __construct(public CategoryProductRepo $category_product)
     {
     }
