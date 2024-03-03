@@ -174,7 +174,7 @@ class CategoryProductController extends Controller
 
 
     /**
-     * GET category-produc
+     * GET category-product
      * @OA\Get (
      *     path="/api/panel/category-product/{id}",
      *     summary="Get information",
@@ -183,7 +183,7 @@ class CategoryProductController extends Controller
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
-     *         example="Ali",
+     *         example="165",
      *         description="Provider name",
      *         required=true,
      *        @OA\Schema(type="string")
@@ -205,16 +205,16 @@ class CategoryProductController extends Controller
      *     ),
      *     @OA\Response(
      *         response="default",
-     *         description="default",
+     *         description="default  165 is id unique category",
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="No query results for model [App\Models\Panel\CategoryProduct] #id")
+     *             @OA\Property(property="msg", type="string", example="No query results for model [App\Models\Panel\CategoryProduct] 165")
      *         )
      *     ),
      *     @OA\Response(
      *         response="404",
      *         description="404",
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="No query results for model [App\Models\Panel\CategoryProduct] #id")
+     *             @OA\Property(property="msg", type="string", example="No query results for model [App\Models\Panel\CategoryProduct] 165",description="165 id id unique category")
      *         )
      *     )
      * )

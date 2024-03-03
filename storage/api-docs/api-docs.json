@@ -230,7 +230,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "example": "Ali"
+                        "example": "165"
                     }
                 ],
                 "responses": {
@@ -283,14 +283,14 @@
                         }
                     },
                     "default": {
-                        "description": "default",
+                        "description": "default  165 is id unique category",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "name": {
+                                        "msg": {
                                             "type": "string",
-                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] #id"
+                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] 165"
                                         }
                                     },
                                     "type": "object"
@@ -304,9 +304,10 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "name": {
+                                        "msg": {
+                                            "description": "165 id id unique category",
                                             "type": "string",
-                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] #id"
+                                            "example": "No query results for model [App\\Models\\Panel\\CategoryProduct] 165"
                                         }
                                     },
                                     "type": "object"
