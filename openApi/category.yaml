@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https://127.0.0.1:8000'
+paths:
+  /api/panel/category-product/:
+    get:
+      description: show category product
+      summary: "نمایش کل دسته بندی ها"
+      parameters:
+        - name: index
+          in: query
+          description: show all index category
+          required: true
+          schema:
+            type: array
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/category-product'
+        '401':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+  /api/panel/category-product:
+    post:
+      description: "post created category "
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/category-product'
+      responses:
+        201:
+          description: "CREATED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/category-product'
+        422:
+          description: "error"
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "ولیدشن رعایت نشده"
+                properties:
+                  type: object
+                $ref: '#/components/schemas/category-product'
+  /api/panel/category-product/{id}:
+   get:
+      description: show category product
+      summary: "فقط ایدی دریافت میشه "
+      parameters:
+        - name: id
+          in: query
+          description: category id filter
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/category-product'
+        '400':
+          description: Not Found Id Filter
+
+   delete:
+        description: delete category
+        summary: "حذف دسته بندی"
+        parameters:
+          - name: id
+            in: query
+            description: category id filter
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: successful deleted category
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    type: object
+                  $ref: '#/components/schemas/category-product'
+          '404':
+            description: Not Found category
+
+components:
+  schemas:
+   category-product:
+     type: object
+     properties:
+       name:
+         type: string
+         example: 'phone'
+         description: 'name product'
+       content:
+         type: string
+         example: 'content product '
+         description: 'توضیعات کامل درباره محصولات '
+       image:
+         type: string
+         example: 'NAME_FILE_IMAGE'
+         description: 'نام فایل به صورت متنی '
+         pattern: \.(jpg|jpeg|png|gif|bmp)
+       show_in_menu:
+         type: boolean
+         enum:
+           - "1"
+           - "0"
+         description: "برای نمایش دسته بندی 1 برای نمایش ندادن 0"
+         pattern: \b(true|false)\b
+       parent_id:
+         type: number
+         example: "58595"
+         description: " ایدی دسته بندی والد"
+         format: int64
+         pattern: \b(true|false)\b

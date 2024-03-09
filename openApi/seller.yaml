@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Seller
+  description: Seller
+  version: 1.0.0
+servers:
+  - url: 'https://127.0.0.1:8000'
+paths:
+  /api/panel/sellers/:
+    get:
+      description: show sellers
+      summary: "نمایش تمامی فروشندکان "
+      parameters:
+        - name: index
+          in: query
+          description: show all index seller
+          required: true
+          schema:
+            type: array
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/sellers'
+        '401':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+  /api/panel/sellers:
+    post:
+      description: "post created sellers "
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/sellers'
+      responses:
+        201:
+          description: "CREATED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/sellers'
+        422:
+          description: "error"
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "ولیدشن رعایت نشده"
+                properties:
+                  type: object
+                $ref: '#/components/schemas/sellers'
+  /api/panel/sellers/{id}:
+    get:
+      description: show sellers product
+      summary: "فقط ایدی دریافت میشه "
+      parameters:
+        - name: id
+          in: query
+          description: sellers id filter
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/sellers'
+        '400':
+          description: Not Found Id Filter
+
+    delete:
+      description: delete sellers
+      summary: "حذف فروشنده "
+      parameters:
+        - name: id
+          in: query
+          description: sellers id filter
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful deleted sellers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type: object
+                $ref: '#/components/schemas/sellers'
+        '404':
+          description: Not Found sellers
+
+components:
+  schemas:
+    sellers:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: 'first_name'
+          description: 'first_name seller'
+          pattern: /ab+c/
+        last_name:
+          type: string
+          example: 'last_name'
+          description: 'last_name seller'
+          pattern: /ab+c/
+        point:
+          type: string
+          example: 'point'
+          description: 'point seller'
+          pattern: /ab+c/
+        email:
+          type: string
+          example: 'email'
+          description: 'email seller'
+          pattern: /ab+c/
+        cart_number:
+          type: string
+          example: 'cart_number'
+          description: 'cart_number seller'
+          pattern: /ab+c/
+
+        code_phone:
+          type: number
+          example: 'code_phone seller '
+          description: 'code_phone seller '
+          format: int64
+          pattern: ^(0|[1-9][0-9]*)$
+        phone:
+          type: number
+          example: 'phone seller '
+          description: 'phone seller '
+          format: int64
+          pattern: ^(0|[1-9][0-9]*)$
+        image:
+          type: string
+          example: 'NAME_FILE_IMAGE'
+          description: 'نام فایل به صورت متنی '
+          pattern: /ab+c/
+        status:
+          type: boolean
+          enum:
+            - "success"
+            - "reject"
+            - "pending"
+            - "cancel"
+            - "fail"
+            - "end"
+          description: " 'success' => 'تایید شده فروشنده'
+             'success' => 'تایید شده فروشنده'
+             'reject' => 'رد شده فروشنده'
+             'pending' => 'درحال تایید  شده فروشنده'
+             'cancel' => 'کنسل شده فروشنده'
+             'fail' => 'خطایی رخ داده   فروشنده'
+             'end' => 'پایان همکاری '
+             "
+          pattern: /(?:^|(?<= ))
+

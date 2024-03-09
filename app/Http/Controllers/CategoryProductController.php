@@ -21,6 +21,7 @@ class CategoryProductController extends Controller
     public function __construct(public CategoryProductRepo $category_product)
     {
     }
+
     /**
      * index category-product
      * @OA\Get (
@@ -91,6 +92,7 @@ class CategoryProductController extends Controller
     {
         return $category_product = $this->category_product->index();
     }
+
     /**
      *store category products
      *
@@ -219,18 +221,84 @@ class CategoryProductController extends Controller
      *     )
      * )
      */
+
+
     public function show($categoryProduct)
     {
         return $category = $this->category_product->getFindId($categoryProduct);
     }
 
 
+    /**
+     * update category product
+     * @OA\Put (
+     *     path="/api/panel/category-product/{id}",
+     *     tags={"category-product"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="nombres",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="apellidos",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "nombres": "Aderson Felix Editado",
+     *                     "apellidos": "Jara Lazaro Editado"
+     *                }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="CREATED",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="name", type="string", example="Aderson Felix"),
+     *
+     *              @OA\Property(property="content", type="string", example="Jara Lazaro"),
+     *              @OA\Property(property="image", type="string", example="Jara Lazaro"),
+     *              @OA\Property(property="show_in_menu", type="boolean", example="Jara Lazaro"),
+     *              @OA\Property(property="parent_id", type="number", example="Jara Lazaro"),
+     *              @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
+     *              @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="UNPROCESSABLE CONTENT",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="number", example=1),
+     *              @OA\Property(property="name", type="string", example="The name field is required."),
+     *              @OA\Property(property="slug", type="string", example="title uinique valid"),
+     *              @OA\Property(property="content", type="string", example="The content field is required."),
+     *              @OA\Property(property="image", type="string", example="The image field is required."),
+     *              @OA\Property(property="message", type="string", example="The apellidos field is required."),
+     *              @OA\Property(property="errors", type="string", example="Objeto de errores"),
+     *          )
+     *      )
+     * )
+     */
     public function update(Request $request, $categoryProduct)
     {
         // todo image
         $this->category_product->update($request, $categoryProduct);
         return response()->json(['message' => 'success update', 'status' => 'success'], 200);
     }
+
     public function destroy($categoryProduct)
     {
         $this->category_product->delete($categoryProduct);
